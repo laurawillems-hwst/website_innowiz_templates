@@ -1,0 +1,234 @@
+/* ==========================================================================
+   Innowiz Design System — Colors & Type
+   --------------------------------------------------------------------------
+   The Innowiz method walks non-designers through four creative phases,
+   each carrying a signature color:
+     1. Analyse         — MAGENTA  (magnifying glass)
+     2. Ideation        — YELLOW   (lightbulb)
+     3. Selection       — BLUE     (thumbs up/down)
+     4. Communication   — BLACK    (megaphone)
+   The brand leans on heavy, condensed all-caps Harabara for the
+   hand-drawn worksheet feel, with Roboto carrying all body + UI copy.
+   ========================================================================== */
+
+/* ---- Fonts ------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Harabara";
+  src: url("fonts/Harabara.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Thin.ttf")        format("truetype"); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-ThinItalic.ttf")  format("truetype"); font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Light.ttf")       format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-LightItalic.ttf") format("truetype"); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Regular.ttf")     format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Italic.ttf")      format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Medium.ttf")      format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-MediumItalic.ttf")format("truetype"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Bold.ttf")        format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-BoldItalic.ttf")  format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-Black.ttf")       format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("fonts/Roboto-BlackItalic.ttf") format("truetype"); font-weight: 900; font-style: italic; font-display: swap; }
+
+@font-face { font-family: "Roboto Condensed"; src: url("fonts/Roboto-Condensed.ttf")         format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto Condensed"; src: url("fonts/Roboto-CondensedItalic.ttf")   format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Roboto Condensed"; src: url("fonts/Roboto-BoldCondensed.ttf")     format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Roboto Condensed"; src: url("fonts/Roboto-BoldCondensedItalic.ttf")format("truetype");font-weight: 700; font-style: italic; font-display: swap; }
+
+:root {
+  /* ---------------------------------------------------------------------
+     COLOR — BRAND CORE
+     The four-bar mark under the logo IS the palette.
+     --------------------------------------------------------------------- */
+  --innowiz-magenta:  #E6007E;  /* Phase 1 — Analyse */
+  --innowiz-yellow:   #FFED00;  /* Phase 2 — Ideation */
+  --innowiz-blue:     #00AEEF;  /* Phase 3 — Selection */
+  --innowiz-black:    #111111;  /* Phase 4 — Communication; also body text */
+
+  /* Tints (15% fills for card backgrounds) */
+  --innowiz-magenta-tint: #FCE4F0;
+  --innowiz-yellow-tint:  #FFFBCC;
+  --innowiz-blue-tint:    #D9F2FC;
+  --innowiz-black-tint:   #E5E5E5;
+
+  /* Darker step for hover/press */
+  --innowiz-magenta-dark: #B8006A;
+  --innowiz-yellow-dark:  #E6D400;  /* used sparingly — yellow rarely darkens */
+  --innowiz-blue-dark:    #0090C4;
+  --innowiz-black-dark:   #000000;
+
+  /* ---------------------------------------------------------------------
+     COLOR — NEUTRALS
+     Worksheets live on gray rails against white cards.
+     --------------------------------------------------------------------- */
+  --neutral-0:   #FFFFFF;  /* card / page background */
+  --neutral-50:  #F7F7F7;  /* subtle page band */
+  --neutral-100: #EFEFEF;  /* worksheet rail / panel fill */
+  --neutral-200: #E0E0E0;  /* dashed dividers, disabled fill */
+  --neutral-300: #CCCCCC;  /* borders */
+  --neutral-400: #A8A8A8;  /* secondary strokes */
+  --neutral-500: #7A7A7A;  /* muted text */
+  --neutral-700: #3A3A3A;  /* body 2 */
+  --neutral-900: #111111;  /* body 1 / headings */
+
+  /* ---------------------------------------------------------------------
+     SEMANTIC SURFACES
+     --------------------------------------------------------------------- */
+  --bg-page:        var(--neutral-0);
+  --bg-panel:       var(--neutral-100);   /* the left-rail / gray canvas */
+  --bg-card:        var(--neutral-0);
+  --bg-card-alt:    var(--neutral-50);
+
+  --fg-1:           var(--neutral-900);   /* primary text */
+  --fg-2:           var(--neutral-700);   /* supporting text */
+  --fg-3:           var(--neutral-500);   /* muted, meta */
+  --fg-inverse:     var(--neutral-0);
+  --fg-accent:      var(--innowiz-blue);  /* default text accent */
+
+  --border-1:       var(--neutral-300);
+  --border-2:       var(--neutral-200);
+  --divider-dashed: var(--neutral-300);
+
+  /* Phase-aware semantic hooks (re-scope with [data-phase="N"]) */
+  --phase-color:    var(--innowiz-blue);
+  --phase-tint:     var(--innowiz-blue-tint);
+  --phase-dark:     var(--innowiz-blue-dark);
+  --phase-on:       #FFFFFF;
+
+  /* ---------------------------------------------------------------------
+     SPACING / RADII / SHADOW / MOTION
+     --------------------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius-sm:   6px;    /* tags, checkboxes */
+  --radius-md:   12px;   /* buttons, inputs */
+  --radius-lg:   20px;   /* worksheet cards */
+  --radius-xl:   28px;   /* phase badges, pill containers */
+  --radius-pill: 999px;  /* capsules and chips */
+
+  --shadow-1: 0 1px 2px rgba(17, 17, 17, 0.06);
+  --shadow-2: 0 4px 14px rgba(17, 17, 17, 0.08);
+  --shadow-3: 0 12px 32px rgba(17, 17, 17, 0.12);
+  --shadow-inset: inset 0 0 0 2px var(--border-2);
+
+  --ease-standard: cubic-bezier(.2, .7, .2, 1);
+  --ease-bounce:   cubic-bezier(.34, 1.56, .64, 1);
+  --dur-fast:  120ms;
+  --dur-med:   220ms;
+  --dur-slow:  360ms;
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAPHY — FAMILIES
+     --------------------------------------------------------------------- */
+  --font-display: "Harabara", "Roboto Condensed", "Arial Narrow", sans-serif;
+  --font-body:    "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-cond:    "Roboto Condensed", "Roboto", system-ui, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAPHY — TOKENS (size / weight / tracking)
+     Harabara is set UPPERCASE with wide tracking — it is the "voice"
+     of the hand-drawn worksheet layer. Roboto carries body/UI.
+     --------------------------------------------------------------------- */
+  --type-hero-size:    88px;
+  --type-h1-size:      56px;
+  --type-h2-size:      40px;
+  --type-h3-size:      28px;
+  --type-h4-size:      22px;
+  --type-body-size:    16px;
+  --type-small-size:   14px;
+  --type-caption-size: 12px;
+
+  --leading-tight: 1.05;
+  --leading-snug:  1.2;
+  --leading-base:  1.45;
+  --leading-loose: 1.6;
+
+  --track-tight:  -0.01em;
+  --track-normal: 0;
+  --track-harabara: 0.04em; /* Harabara needs a touch of extra tracking */
+  --track-wide:   0.04em;
+  --track-wider:  0.08em;
+}
+
+/* =========================================================================
+   SEMANTIC TYPE CLASSES
+   ========================================================================= */
+
+html { color-scheme: light; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  line-height: var(--leading-base);
+  color: var(--fg-1);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display — the headline voice. Harabara is a lowercase-lockup face,
+   so never force uppercase on it. Keep tracking tight. */
+.t-hero,
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: var(--track-harabara);
+  line-height: var(--leading-tight);
+}
+
+.t-hero { font-size: var(--type-hero-size); }
+.t-display { font-size: var(--type-h1-size); }
+
+/* UI headings — Roboto, because they need to live in interface chrome. */
+h1, .t-h1 { font-family: var(--font-body); font-weight: 900; font-size: var(--type-h1-size); line-height: var(--leading-tight); letter-spacing: var(--track-tight); color: var(--fg-1); }
+h2, .t-h2 { font-family: var(--font-body); font-weight: 700; font-size: var(--type-h2-size); line-height: var(--leading-snug); letter-spacing: var(--track-tight); color: var(--fg-1); }
+h3, .t-h3 { font-family: var(--font-body); font-weight: 700; font-size: var(--type-h3-size); line-height: var(--leading-snug); color: var(--fg-1); }
+h4, .t-h4 { font-family: var(--font-body); font-weight: 700; font-size: var(--type-h4-size); line-height: var(--leading-snug); color: var(--fg-1); }
+
+p, .t-body { font-size: var(--type-body-size); line-height: var(--leading-base); color: var(--fg-2); }
+.t-body-strong { font-weight: 700; color: var(--fg-1); }
+.t-small   { font-size: var(--type-small-size);   line-height: var(--leading-base); color: var(--fg-2); }
+.t-caption { font-size: var(--type-caption-size); line-height: var(--leading-base); color: var(--fg-3); letter-spacing: var(--track-wide); text-transform: uppercase; }
+
+/* Worksheet voice — Harabara. This face reads like hand-drawn caps but
+   is drawn as lowercase glyphs; never apply text-transform: uppercase. */
+.t-worksheet {
+  font-family: var(--font-display);
+  text-transform: none;
+  letter-spacing: var(--track-harabara);
+  color: var(--innowiz-blue);
+  line-height: var(--leading-snug);
+}
+
+code, kbd, samp, .t-code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--neutral-100);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+}
+
+a { color: var(--innowiz-magenta); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* =========================================================================
+   PHASE SCOPING
+   Set data-phase="1|2|3|4" on any container to remap --phase-color/tint/etc.
+   ========================================================================= */
+[data-phase="1"] { --phase-color: var(--innowiz-magenta); --phase-tint: var(--innowiz-magenta-tint); --phase-dark: var(--innowiz-magenta-dark); --phase-on: #FFFFFF; }
+[data-phase="2"] { --phase-color: var(--innowiz-yellow);  --phase-tint: var(--innowiz-yellow-tint);  --phase-dark: var(--innowiz-yellow-dark);  --phase-on: #111111; }
+[data-phase="3"] { --phase-color: var(--innowiz-blue);    --phase-tint: var(--innowiz-blue-tint);    --phase-dark: var(--innowiz-blue-dark);    --phase-on: #FFFFFF; }
+[data-phase="4"] { --phase-color: var(--innowiz-black);   --phase-tint: var(--innowiz-black-tint);   --phase-dark: #000000;                      --phase-on: #FFFFFF; }

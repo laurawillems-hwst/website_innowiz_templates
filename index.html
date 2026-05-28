@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Innowiz templates</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--neutral-50);
+    color: var(--fg-1);
+    min-height: 100vh;
+  }
+
+  /* ---------- HEADER ---------- */
+  .site-header {
+    background: var(--neutral-0);
+    border-bottom: 1px solid var(--border-2);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .brand-logo { height: 34px; width: auto; display: block; }
+  .brand-bars {
+    display: flex;
+    gap: 3px;
+  }
+  .brand-bars span {
+    display: block;
+    width: 14px;
+    height: 6px;
+    border-radius: 1px;
+  }
+  .brand-bars span:nth-child(1) { background: var(--innowiz-magenta); }
+  .brand-bars span:nth-child(2) { background: var(--innowiz-yellow); }
+  .brand-bars span:nth-child(3) { background: var(--innowiz-blue); }
+  .brand-bars span:nth-child(4) { background: var(--innowiz-black); }
+
+  .header-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: var(--track-harabara);
+    margin: 0;
+    line-height: 1;
+  }
+  .header-tagline {
+    font-size: 13px;
+    color: var(--fg-3);
+    font-style: italic;
+  }
+
+  .header-spacer { flex: 1; }
+
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--neutral-100);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+  }
+  .lang-toggle button {
+    border: 0;
+    background: transparent;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    color: var(--fg-3);
+    transition: all var(--dur-fast) var(--ease-standard);
+  }
+  .lang-toggle button.active {
+    background: var(--innowiz-black);
+    color: #fff;
+  }
+
+  /* ---------- HERO / SUBHEADER ---------- */
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 32px 24px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 0.95;
+    letter-spacing: var(--track-harabara);
+    margin: 0 0 12px 0;
+    font-weight: 400;
+  }
+  .hero p {
+    margin: 0;
+    max-width: 620px;
+    color: var(--fg-2);
+    font-size: 16px;
+  }
+
+  /* ---------- CONTROLS ---------- */
+  .controls {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 32px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 240px;
+    max-width: 420px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    stroke: var(--fg-3);
+    fill: none;
+    stroke-width: 2;
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: 12px 14px 12px 40px;
+    border: 1px solid var(--border-1);
+    border-radius: var(--radius-md);
+    background: var(--neutral-0);
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--fg-1);
+    outline: none;
+    transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+  }
+  .search-input:focus {
+    border-color: var(--innowiz-blue);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    border: 2px solid var(--border-1);
+    background: var(--neutral-0);
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--fg-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--dur-fast) var(--ease-standard);
+    user-select: none;
+  }
+  .chip .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--neutral-400);
+  }
+  .chip[data-phase="1"] .dot { background: var(--innowiz-magenta); }
+  .chip[data-phase="2"] .dot { background: var(--innowiz-yellow); border: 1px solid var(--neutral-300); }
+  .chip[data-phase="3"] .dot { background: var(--innowiz-blue); }
+  .chip[data-phase="4"] .dot { background: var(--innowiz-black); }
+  .chip:hover { border-color: var(--neutral-400); }
+  .chip.active[data-phase="1"] { background: var(--innowiz-magenta); color: #fff; border-color: var(--innowiz-magenta); }
+  .chip.active[data-phase="2"] { background: var(--innowiz-yellow); color: var(--innowiz-black); border-color: var(--innowiz-yellow); }
+  .chip.active[data-phase="3"] { background: var(--innowiz-blue); color: #fff; border-color: var(--innowiz-blue); }
+  .chip.active[data-phase="4"] { background: var(--innowiz-black); color: #fff; border-color: var(--innowiz-black); }
+  .chip.active[data-phase="all"] { background: var(--neutral-900); color: #fff; border-color: var(--neutral-900); }
+  .chip.active .dot { background: currentColor; border-color: transparent; }
+
+  .count-badge {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--fg-3);
+    font-weight: 500;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px 80px;
+  }
+  .phase-section {
+    margin-bottom: 56px;
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-2);
+  }
+  .phase-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .phase-badge img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    /* Force the icon to render white on the colored badge background */
+    filter: brightness(0) invert(1);
+  }
+  /* Yellow badge needs a dark icon for contrast */
+  .phase-section[data-phase="2"] .phase-badge img {
+    filter: brightness(0);
+  }
+  .phase-section[data-phase="1"] .phase-badge { background: var(--innowiz-magenta); }
+  .phase-section[data-phase="2"] .phase-badge { background: var(--innowiz-yellow); }
+  .phase-section[data-phase="3"] .phase-badge { background: var(--innowiz-blue); }
+  .phase-section[data-phase="4"] .phase-badge { background: var(--innowiz-black); }
+
+  .phase-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: var(--track-harabara);
+    line-height: 1;
+    margin: 0;
+    font-weight: 400;
+  }
+  .phase-section[data-phase="1"] .phase-title { color: var(--innowiz-magenta); }
+  .phase-section[data-phase="2"] .phase-title { color: var(--innowiz-yellow-dark); }
+  .phase-section[data-phase="3"] .phase-title { color: var(--innowiz-blue); }
+  .phase-section[data-phase="4"] .phase-title { color: var(--innowiz-black); }
+
+  .phase-meta {
+    color: var(--fg-3);
+    font-size: 13px;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .phase-count {
+    margin-left: auto;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--fg-3);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .thumb-card {
+    background: var(--neutral-0);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform var(--dur-fast) var(--ease-standard),
+                box-shadow var(--dur-fast) var(--ease-standard),
+                border-color var(--dur-fast);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .thumb-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+    border-color: var(--neutral-300);
+  }
+  .thumb-img-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--neutral-100);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    -webkit-user-drag: none;
+  }
+  .thumb-img.failed {
+    display: none;
+  }
+  .thumb-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--neutral-100);
+    color: var(--fg-3);
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: var(--track-harabara);
+    padding: 12px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity var(--dur-med);
+  }
+  .thumb-fallback.show { opacity: 1; }
+  .thumb-fallback .ph-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .thumb-phase-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: var(--track-harabara);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    z-index: 2;
+    line-height: 1.3;
+  }
+  .thumb-card[data-phase="1"] .thumb-phase-tag { background: var(--innowiz-magenta); color: #fff; }
+  .thumb-card[data-phase="2"] .thumb-phase-tag { background: var(--innowiz-yellow); color: var(--innowiz-black); }
+  .thumb-card[data-phase="3"] .thumb-phase-tag { background: var(--innowiz-blue); color: #fff; }
+  .thumb-card[data-phase="4"] .thumb-phase-tag { background: var(--innowiz-black); color: #fff; }
+
+  .thumb-label {
+    padding: 14px 16px 16px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--fg-1);
+    line-height: 1.3;
+    text-transform: lowercase;
+    border-top: 1px solid var(--border-2);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--fg-3);
+  }
+  .empty-state h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: var(--track-harabara);
+    margin: 0 0 8px;
+    color: var(--fg-2);
+    font-weight: 400;
+  }
+
+  /* ---------- DETAIL VIEW ---------- */
+  .detail-view {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 17, 17, 0.92);
+    z-index: 100;
+    overflow-y: auto;
+    padding: 0;
+  }
+  .detail-view.active { display: block; }
+
+  .detail-bar {
+    position: sticky;
+    top: 0;
+    background: rgba(17, 17, 17, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .back-btn, .nav-btn, .print-btn {
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    transition: all var(--dur-fast) var(--ease-standard);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .back-btn {
+    background: transparent;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .back-btn:hover { background: rgba(255, 255, 255, 0.1); }
+
+  .detail-name-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .detail-phase-tag {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: var(--track-harabara);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    line-height: 1.3;
+    align-self: flex-start;
+  }
+  .detail-view[data-phase="1"] .detail-phase-tag { background: var(--innowiz-magenta); color: #fff; }
+  .detail-view[data-phase="2"] .detail-phase-tag { background: var(--innowiz-yellow); color: var(--innowiz-black); }
+  .detail-view[data-phase="3"] .detail-phase-tag { background: var(--innowiz-blue); color: #fff; }
+  .detail-view[data-phase="4"] .detail-phase-tag { background: var(--innowiz-black); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+  .detail-name {
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: lowercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-btns { display: flex; gap: 8px; }
+  .nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: var(--radius-md);
+    justify-content: center;
+    font-size: 18px;
+  }
+  .nav-btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.2); }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .print-btn {
+    background: var(--innowiz-magenta);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+  }
+  .print-btn:hover { background: var(--innowiz-magenta-dark); }
+  .print-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .detail-stage {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px;
+  }
+  .img-frame {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+  }
+  .full-img {
+    max-width: 100%;
+    max-height: 75vh;
+    height: auto;
+    object-fit: contain;
+    -webkit-user-drag: none;
+  }
+
+  .action-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .no-dl {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hidden { display: none !important; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px) {
+    .header-inner { padding: 14px 18px; }
+    .brand-logo { height: 28px; }
+    .header-title { font-size: 20px; }
+    .header-tagline { display: none; }
+    .hero { padding: 24px 18px 12px; }
+    .hero h1 { font-size: 40px; }
+    .controls { padding: 12px 18px; }
+    .gallery { padding: 16px 18px 60px; }
+    .phase-title { font-size: 26px; }
+    .phase-badge { width: 44px; height: 44px; }
+    .phase-badge img { width: 28px; height: 28px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    .detail-bar { padding: 12px 16px; flex-wrap: wrap; }
+    .detail-name { font-size: 14px; }
+    .detail-stage { padding: 16px; }
+    .img-frame { padding: 12px; }
+  }
+</style>
+</head>
+<body data-screen-label="01 Gallery">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <img class="brand-logo" src="assets/logo-innowiz.png" alt="Innowiz" />
+        <div class="brand-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </a>
+      <div class="header-spacer"></div>
+      <div class="lang-toggle" role="tablist">
+        <button id="lang-nl" class="active" data-lang="nl">NL</button>
+        <button id="lang-en" data-lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 id="heroTitle">innowiz templates</h1>
+    <p id="heroSub">Een verzameling van de blanco templates, klaar om af te drukken en te gebruiken.</p>
+  </section>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="searchInput" class="search-input" type="text" placeholder="Zoek een methode…" autocomplete="off" />
+    </div>
+    <div class="filter-chips" id="filterChips">
+      <button class="chip active" data-phase="all"><span class="dot"></span><span data-i18n="all">Alle</span></button>
+      <button class="chip" data-phase="1"><span class="dot"></span><span data-i18n="p1">Probleem definitie</span></button>
+      <button class="chip" data-phase="2"><span class="dot"></span><span data-i18n="p2">Idee generatie</span></button>
+      <button class="chip" data-phase="3"><span class="dot"></span><span data-i18n="p3">Idee selectie</span></button>
+      <button class="chip" data-phase="4"><span class="dot"></span><span data-i18n="p4">Idee communicatie</span></button>
+    </div>
+    <span class="count-badge" id="countBadge"></span>
+  </div>
+
+  <!-- GALLERY -->
+  <main class="gallery" id="galleryView"></main>
+
+  <!-- DETAIL -->
+  <div class="detail-view" id="detailView">
+    <div class="detail-bar">
+      <button class="back-btn" id="backBtn">
+        <span aria-hidden="true">←</span>
+        <span data-i18n="back">Terug</span>
+      </button>
+      <div class="detail-name-wrap">
+        <span class="detail-phase-tag" id="detailPhaseTag"></span>
+        <span class="detail-name" id="detailName"></span>
+      </div>
+      <div class="nav-btns">
+        <button class="nav-btn" id="prevBtn" title="Vorige" aria-label="Vorige">←</button>
+        <button class="nav-btn" id="nextBtn" title="Volgende" aria-label="Volgende">→</button>
+      </div>
+      <button class="print-btn" id="printBtn">
+        <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span data-i18n="print">Afdrukken</span>
+      </button>
+    </div>
+    <div class="detail-stage">
+      <div class="img-frame">
+        <img class="full-img" id="fullImg" src="" alt="" draggable="false" />
+      </div>
+      <div class="action-row">
+        <span class="no-dl">🔒 <span data-i18n="lock">Alleen afdrukken · geen download</span></span>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // ═══════════════════════════════════════════════════════════════
+  //  i18n
+  // ═══════════════════════════════════════════════════════════════
+  const I18N = {
+    nl: {
+      heroTitle: "innowiz templates",
+      heroSub: "Een verzameling van methodekaarten — bladerbaar per fase, doorzoekbaar, en klaar om af te drukken.",
+      searchPlaceholder: "Zoek een methode…",
+      all: "Alle",
+      p1: "Probleem definitie", p2: "Idee generatie", p3: "Idee selectie", p4: "Idee communicatie",
+      p1Sub: "begrijpen & afbakenen", p2Sub: "divergeren", p3Sub: "vergelijken & kiezen", p4Sub: "aanscherpen & delen",
+      back: "Terug", print: "Afdrukken",
+      lock: "Alleen afdrukken · geen download",
+      countAll: n => `${n} methodes`,
+      countFiltered: (n, total) => `${n} van ${total} methodes`,
+      empty: "Geen methodes gevonden",
+      emptySub: "Pas je zoekopdracht of filter aan.",
+      phaseCount: n => `${n} methodes`
+    },
+    en: {
+      heroTitle: "innowiz templates",
+      heroSub: "A collection of method cards — browsable by phase, searchable, and ready to print.",
+      searchPlaceholder: "Search a method…",
+      all: "All",
+      p1: "Problem definition", p2: "Idea generation", p3: "Idea selection", p4: "Idea communication",
+      p1Sub: "understand & scope", p2Sub: "generate ideas", p3Sub: "compare & pick", p4Sub: "sharpen & share",
+      back: "Back", print: "Print",
+      lock: "Print only · no download",
+      countAll: n => `${n} methods`,
+      countFiltered: (n, total) => `${n} of ${total} methods`,
+      empty: "No methods found",
+      emptySub: "Adjust your search or filter.",
+      phaseCount: n => `${n} methods`
+    }
+  };
+
+  // ═══════════════════════════════════════════════════════════════
+  //  DATA — worksheets mapped to Innowiz phases
+  // ═══════════════════════════════════════════════════════════════
+  const AFBEELDINGEN = [
+    // ── PHASE 1 ────────────────────────────────────────
+    { title: "boundary examination",            phase: 1, url: { nl: "https://drive.google.com/file/d/1kcKBVnX-GC9evxL_R96aYs63fiQ6m3nn/view", en: "https://drive.google.com/file/d/1IXvB-jZlRIcFVvg6pzgKiNgubkBDUTIN/view" } },
+    { title: "stakeholder mapping",             phase: 1, url: { nl: "https://drive.google.com/file/d/1pMXNPsPKRpeleYKbNj-ZFfaxNrXvqzfg/view", en: "https://drive.google.com/file/d/1m5kR03SRCInx1J18IJBAhIiVeZCzDE-8/view" } },
+    { title: "empathy mapping",                 phase: 1, url: { nl: "https://drive.google.com/file/d/1TGN9Paz5IKGeiLH7WUPxHwOSKE08dKIy/view", en: "https://drive.google.com/file/d/1et6hNeQ8sAajyzGrm-a_IilpXck366x9/view" } },
+    { title: "5w1h",                            phase: 1, url: { nl: "https://drive.google.com/file/d/1CihsoR-maK9dGgGmckayroWLzNfn83BN/view", en: "https://drive.google.com/file/d/1tsucC1bB7BHiGRPrdiK_2EjKpVVUfdug/view" } },
+    { title: "ideal final result",              phase: 1, url: { nl: "https://drive.google.com/file/d/1Q4KUlyZDepnjYRETQZiwqyvmsRKUiYS6/view", en: "https://drive.google.com/file/d/1952RBbgSUEn1ZGxH07adcdM6m21lXYbz/view" } },
+    { title: "mindmap",                         phase: 1, url: { nl: "https://drive.google.com/file/d/1j6o_qzM-YJI25ZTQtLsF2opAzre2xpnu/view", en: "https://drive.google.com/file/d/1xETnXQKsCltJZCYhOgcH2rWDAD7djROO/view" } },
+    { title: "5 why's",                         phase: 1, url: { nl: "https://drive.google.com/file/d/1WQfCSn-UalAC1YYo98cb6H32Kg7jU-60/view", en: "https://drive.google.com/file/d/1_oaQdJB1kSaTQmIcLH569ifkdOTPiXv0/view" } },
+    { title: "list of demands",                 phase: 1, url: { nl: "https://drive.google.com/file/d/1A8DWY7cFHuLU2JZWMDzdXik97QG5flrz/view", en: "https://drive.google.com/file/d/15Ns5xkX3tB_4pqOMfXqiXJPA8Ct7mIO_/view" } },
+    { title: "project sheet",                   phase: 1, url: { nl: "https://drive.google.com/file/d/1NhOocKcJwENvTnCd1khbtr3TyFD-xx9M/view", en: "https://drive.google.com/file/d/1SXgtGGqVd90Ko-r1AjqCHY5y6H93KHSr/view" } },
+    { title: "a day in a life",                 phase: 1, url: { nl: "https://drive.google.com/file/d/1zhsSY3Sd4qdBSo8DvApQQN28yZ1Qx4es/view", en: "https://drive.google.com/file/d/1A39NArfvsLRLzVSHMwlDVuwefznPjhN-/view" } },
+    { title: "persona",                         phase: 1, url: { nl: "https://drive.google.com/file/d/1f8RQ3ld4gIIBYJbYGYYbO4GnlnD0-jkG/view", en: "https://drive.google.com/file/d/1u8cMN4Q4S-Djy1jMClw1vZ7bH8OxVuDH/view" } },
+    { title: "morpho 1",                        phase: 1, url: { nl: "https://drive.google.com/file/d/1tQh0E2WcaF6iq3YE0ucTm5q_F_oIZXTw/view", en: "https://drive.google.com/file/d/1aipQDSOZJGlfVX_rXhTUJMh9SoV0aGfE/view" } },
+
+    // ── PHASE 2 ────────────────────────────────────────
+    { title: "6-3-5 brainsketching",            phase: 2, url: { nl: "https://drive.google.com/file/d/1dO_5rA8iGIVCKjurGx5j5yNnPcLRX5BK/view", en: "https://drive.google.com/file/d/1OLT6EpnlvOL66qmNz3fGG7AEPfppWt-1/view" } },
+    { title: "6 senses",                        phase: 2, url: { nl: "https://drive.google.com/file/d/12kwOZAYbSlt9-Mn79rx1rlKqapzcrtL1/view", en: "https://drive.google.com/file/d/1QkRFGXsfXNYOG3Ua7oSaulnOr-toCIwc/view" } },
+    { title: "morpho 2",                        phase: 2, url: { nl: "https://drive.google.com/file/d/1lxpW99UESjJdMJM9QyZJ2L6O9N3JSF2B/view", en: "https://drive.google.com/file/d/10txdEdfN7jgbOJepOqfNMeWHp5jLKCf2/view" } },
+    { title: "morpho 1 (alt)",                  phase: 2, url: { nl: "https://drive.google.com/file/d/1_dl7weNrCpF5ukS9MNWbr7TPpxOxY2lQ/view", en: "https://drive.google.com/file/d/12OfVPAeQZLvCH1XC7sY4QehtcV0QmzK4/view" } },
+    { title: "lotus blossom",                   phase: 2, url: { nl: "https://drive.google.com/file/d/1fxYI9VJ9gREBNI4fiZEZwD-ALp2to9jT/view", en: "https://drive.google.com/file/d/1FL7u-TS6ExIAEKrJwzeeOKygZL_PW3rL/view" } },
+    { title: "conceptual blending",             phase: 2, url: { nl: "https://drive.google.com/file/d/1VLVGPbnk8ZfaBlSVRQY0FTZBLt5-WlUw/view", en: "https://drive.google.com/file/d/1W2a17mez2J66d7mdPseF-ow9EGiQNMxA/view" } },
+    { title: "reverse brainstorm",              phase: 2, url: { nl: "https://drive.google.com/file/d/1koX6JXqYaLEDk7Kct4UzAUb1svFGIxsT/view", en: "https://drive.google.com/file/d/1R2531Y_ntiD9KWVd7M8oL_zvkOJs7HIf/view" } },
+    { title: "the lottery",                     phase: 2, url: { nl: "https://drive.google.com/file/d/13FlrJ-mhFEsCSHRMWV0K-NL7xDpHO__C/view", en: "https://drive.google.com/file/d/1E1Hd9zAJeCDSCq6qafm4mE5eJAl4eKcv/view" } },
+    { title: "escape thinking",                 phase: 2, url: { nl: "https://drive.google.com/file/d/1I8VYHFsPuM6rr_KqEk0UuOCj5WuDpZSq/view", en: "https://drive.google.com/file/d/1LwoSiWNz7Obt-9jZHjvDN7bvNdN2-W4-/view" } },
+    { title: "SCAMPER",                         phase: 2, url: { nl: "https://drive.google.com/file/d/1EZHo-70abbqomTDlPdUZE3_bkKPEEvYF/view", en: "https://drive.google.com/file/d/1h-N1f3bjhgfHhJo4efRFne0VcA0Y23Mk/view" } },
+    { title: "alter ego",                       phase: 2, url: { nl: "https://drive.google.com/file/d/1-ibhxFISEYWK8-6RPSK67z3YiZhbzZsP/view", en: "https://drive.google.com/file/d/1_hYokte9BTnw4zvi_pCvMAawjszhmCrW/view" } },
+    { title: "cherry split",                    phase: 2, url: { nl: "https://drive.google.com/file/d/1q1XZiEj9U_tJmA0sm5sUT0ZgB_DZJ_sw/view", en: "https://drive.google.com/file/d/1G9pTcUDTUO8pWMKYmEfgj9svA-hNzbp-/view" } },
+
+    // ── PHASE 3 ────────────────────────────────────────
+    { title: "radar plot",                      phase: 3, url: { nl: "https://drive.google.com/file/d/1TKEJ4gU62AvtdFJEdDjtQzBl8OrDQO4k/view", en: "https://drive.google.com/file/d/1F4NR-QkCbZfYnA0KfmBBPyRmJue1gKOt/view" } },
+    { title: "affinity mapping",                phase: 3, url: { nl: "https://drive.google.com/file/d/1Y8mvGRnNStTS2UV9lXgZQqm_F9fDpxLu/view", en: "https://drive.google.com/file/d/1Y0FpWlUT_c0gxj5Cezk9TsYOPYqFMfY4/view" } },
+    { title: "blend matrix",                    phase: 3, url: { nl: "https://drive.google.com/file/d/1HVCIZC5l5cvoSVJ6ni8wZ3JN-MwbvgHW/view", en: "https://drive.google.com/file/d/1W4pE0IOPunrqsaARv0YMPfWhA7Xg5PBi/view" } },
+    { title: "NAF",                             phase: 3, url: { nl: "https://drive.google.com/file/d/1otg72cTRtj3QM5gNHG6Cp12KZW8wTSs0/view", en: "https://drive.google.com/file/d/1M9a3338At6D5PqbRDg2pdOYnvQcJSf_V/view" } },
+    { title: "plusses potentials and concerns", phase: 3, url: { nl: "https://drive.google.com/file/d/1SSVGGcrN2UuIh6BgL6MsR8HHKBUy7jNK/view", en: "https://drive.google.com/file/d/1iy2P32mvjR1PnujLENOj2ZVRjoxaKmmW/view" } },
+    { title: "prefer matrix",                   phase: 3, url: { nl: "https://drive.google.com/file/d/12-bnWARAk3bOxzXGjTRggEBiVBYQAcgr/view", en: "https://drive.google.com/file/d/1TRdG84kDcYGt5fW8at0ZPCm8GPhaOBY2/view" } },
+    { title: "paired comparison",               phase: 3, url: { nl: "https://drive.google.com/file/d/1WgpdII_zwsgxT5rHgpTrlwj291rwsLfs/view", en: "https://drive.google.com/file/d/1stbL2fPneJb7trUNoqw4ok6WNVos73Gm/view" } },
+    { title: "decide matrix",                   phase: 3, url: { nl: "https://drive.google.com/file/d/15pOjpivtKX1ucQH7fPmCZuPf429CCGlj/view", en: "https://drive.google.com/file/d/1qP4YnNMkhoraYE0WLwaQo77CFGbw5sfP/view" } },
+    { title: "COCD-box",                        phase: 3, url: { nl: "https://drive.google.com/file/d/1ERP5gnM-8cPm7dOENvKjK7GrM-el-laI/view", en: "https://drive.google.com/file/d/1u5-62Bv_KLafIGtiMWY4zIAu9sR9h6eg/view" } },
+    { title: "forced ranking",                  phase: 3, url: { nl: "https://drive.google.com/file/d/1omiLHKR3ik96khE39143fCyD6F-ovmYU/view", en: "https://drive.google.com/file/d/1L7ULI1EcQFJ-_yBcav8EbAarCntZLTaL/view" } },
+    { title: "habemus ideam",                   phase: 3, url: { nl: "https://drive.google.com/file/d/1D4gMDLxovd8F732RqV4Donlpdvc4WGk4/view", en: "https://drive.google.com/file/d/11gjP6_BzUGEOTpRaeFr5XNCbLYaYkqC7/view" } },
+
+    // ── PHASE 4 ────────────────────────────────────────
+    { title: "elevator pitch",                  phase: 4, url: { nl: "https://drive.google.com/file/d/1GnHgX9Ps-Cg_b-eYfa1lvK8tTLqtZBIl/view", en: "https://drive.google.com/file/d/1wmDVMgVdcqxQw-HIiOT80ovzdT1-dQzN/view" } },
+    { title: "storyboard",                      phase: 4, url: { nl: "https://drive.google.com/file/d/1u_VTwPrDpMkMvDIl7iXt2Xx2UgM5Gv4A/view", en: "https://drive.google.com/file/d/1SrxAcc030EDGhXnrCuOvUum3DtmYq131/view" } },
+    { title: "eureka matrix",                   phase: 4, url: { nl: "https://drive.google.com/file/d/1wdEl0JGU2W-NfNYTD4Es8EkBizDjihAh/view", en: "https://drive.google.com/file/d/1oxw42z-7KdAKMZdbvUweHBm4kM2oTSQj/view" } },
+    { title: "plus delta",                      phase: 4, url: { nl: "https://drive.google.com/file/d/1hRbNvdGoMNtnUbIbxzlIx6Op55Vcf1fk/view", en: "https://drive.google.com/file/d/1kszrLdnNMBR1PYaPqzmfeSCFwnhh9lD2/view" } },
+    { title: "kiss factors",                    phase: 4, url: { nl: "https://drive.google.com/file/d/1c8pToGGZqSWECtHtcNahWMeQBiQMm19J/view", en: "https://drive.google.com/file/d/1yGlc5_0SYG5BN81iUJ9OTu_8RAU395Td/view" } },
+    { title: "sketching",                       phase: 4, url: { nl: "https://drive.google.com/file/d/139cLQtvLWrXyyeWIZXtiifN-RBMlm4RU/view", en: "https://drive.google.com/file/d/1g2es4ngcCzSWqaAvp_lKJ5l3kRHWUrZd/view" } },
+    { title: "round number 2",                  phase: 4, url: { nl: "https://drive.google.com/file/d/1rVdXrM5OKqDaL8Rc0lIkVZgAwDbynT3x/view", en: "https://drive.google.com/file/d/1XTJAZfwPAmyPNgiJlVLelhBi_VyJhkDy/view" } },
+    { title: "is : is not",                     phase: 4, url: { nl: "https://drive.google.com/file/d/1ccsHn_gy2tFA_E69ZdnzRffikmTR4pNh/view", en: "https://drive.google.com/file/d/1AhYAAdsaqXulhl5RUWGQbPR20ofbCLzN/view" } },
+    { title: "positioning map",                 phase: 4, url: { nl: "https://drive.google.com/file/d/1DITWhUCC5OonK8Wf4_grYB3Qj2my_ozs/view", en: "https://drive.google.com/file/d/1WH1BjGKiDhirIUqyB0siaBU-46sO9P3e/view" } },
+    { title: "future SWOT",                     phase: 4, url: { nl: "https://drive.google.com/file/d/1-vFAFIp0wJhv8Du9N8V4i98jL7gE0NJR/view", en: "https://drive.google.com/file/d/1JdpXF4I1l4jS1fXQkYaNCQpm2p9ctZGR/view" } },
+    { title: "smart",                           phase: 4, url: { nl: "https://drive.google.com/file/d/1x0YNnJEd8-8E3vTTbp2t3_6uEM_38nCI/view", en: "https://drive.google.com/file/d/1FMwN9tCh2TWZViqxfsjIxQ-O8vRZn9Wh/view" } },
+    { title: "idea sheet",                      phase: 4, url: { nl: "https://drive.google.com/file/d/1R1TZXB_30Z7i_jnJu6s5fVhf-kHzTQnD/view", en: "https://drive.google.com/file/d/1mN5gHJ2zHKoMAIXRSxYv6hcGn-319pAN/view" } },
+  ];
+
+  // Resolve worksheet URL by current language; fall back to NL when EN is missing.
+  function pickUrl(img) {
+    if (typeof img.url === "string") return img.url;
+    return img.url[lang] || img.url.nl || img.url.en;
+  }
+
+  const PHASE_ICONS = {
+    1: "assets/phase-1-analyse-transp.png",
+    2: "assets/phase-2-ideation-transp.png",
+    3: "assets/phase-3-selection-transp.png",
+    4: "assets/phase-4-communication-transp.png",
+  };
+
+  // ═══════════════════════════════════════════════════════════════
+  //  GOOGLE DRIVE URL HELPERS
+  // ═══════════════════════════════════════════════════════════════
+  function fileId(url) {
+    const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    return m ? m[1] : null;
+  }
+  function fullUrl(url) {
+    const id = fileId(url);
+    return id ? `https://drive.google.com/uc?export=view&id=${id}` : url;
+  }
+  function thumbUrl(url, size = 400) {
+    const id = fileId(url);
+    return id ? `https://drive.google.com/thumbnail?id=${id}&sz=w${size}` : url;
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  STATE & RENDER
+  // ═══════════════════════════════════════════════════════════════
+  let lang = "nl";
+  let activePhase = "all";
+  let searchQuery = "";
+  let current = 0;
+  let visibleList = []; // filtered list (used for prev/next)
+
+  const $ = (id) => document.getElementById(id);
+
+  function applyI18n() {
+    const t = I18N[lang];
+    $("heroTitle").textContent = t.heroTitle;
+    $("heroSub").textContent = t.heroSub;
+    $("searchInput").placeholder = t.searchPlaceholder;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (t[key]) el.textContent = t[key];
+    });
+    document.documentElement.lang = lang;
+  }
+
+  function render() {
+    const t = I18N[lang];
+    const q = searchQuery.trim().toLowerCase();
+    const filtered = AFBEELDINGEN.filter(img => {
+      if (activePhase !== "all" && img.phase !== Number(activePhase)) return false;
+      if (q && !img.title.toLowerCase().includes(q)) return false;
+      return true;
+    });
+    visibleList = filtered;
+
+    // Count badge
+    if (q || activePhase !== "all") {
+      $("countBadge").textContent = t.countFiltered(filtered.length, AFBEELDINGEN.length);
+    } else {
+      $("countBadge").textContent = t.countAll(AFBEELDINGEN.length);
+    }
+
+    const gallery = $("galleryView");
+    gallery.innerHTML = "";
+
+    if (filtered.length === 0) {
+      gallery.innerHTML = `
+        <div class="empty-state">
+          <h3>${t.empty}</h3>
+          <p>${t.emptySub}</p>
+        </div>`;
+      return;
+    }
+
+    // Group by phase, only render phases that have results
+    const phases = activePhase === "all" ? [1, 2, 3, 4] : [Number(activePhase)];
+    phases.forEach(p => {
+      const items = filtered.filter(i => i.phase === p);
+      if (items.length === 0) return;
+      const section = document.createElement("section");
+      section.className = "phase-section";
+      section.setAttribute("data-phase", p);
+      section.innerHTML = `
+        <header class="phase-header">
+          <div class="phase-badge"><img src="${PHASE_ICONS[p]}" alt="" /></div>
+          <div>
+            <h2 class="phase-title">${t["p" + p]}</h2>
+            <div class="phase-meta">${t["p" + p + "Sub"]}</div>
+          </div>
+          <span class="phase-count">${t.phaseCount(items.length)}</span>
+        </header>
+        <div class="grid"></div>
+      `;
+      const grid = section.querySelector(".grid");
+      items.forEach((img) => {
+        const idx = AFBEELDINGEN.indexOf(img);
+        const card = document.createElement("div");
+        card.className = "thumb-card";
+        card.setAttribute("data-phase", p);
+        card.setAttribute("data-idx", idx);
+        const wsUrl = pickUrl(img);
+        card.innerHTML = `
+          <div class="thumb-img-wrap">
+            <img class="thumb-img" src="${thumbUrl(wsUrl)}" alt="${img.title}" draggable="false" loading="lazy" />
+            <div class="thumb-fallback">
+              <div class="ph-icon"><img src="${PHASE_ICONS[p]}" style="width:20px;height:20px" alt="" /></div>
+              <div>${img.title}</div>
+            </div>
+          </div>
+          <div class="thumb-label">${img.title}</div>
+        `;
+        const imgEl = card.querySelector(".thumb-img");
+        const fb = card.querySelector(".thumb-fallback");
+        imgEl.addEventListener("error", () => {
+          imgEl.classList.add("failed");
+          fb.classList.add("show");
+        });
+        card.addEventListener("click", () => showDetail(idx));
+        grid.appendChild(card);
+      });
+      gallery.appendChild(section);
+    });
+  }
+
+  function showDetail(idx) {
+    current = idx;
+    const img = AFBEELDINGEN[idx];
+    const dv = $("detailView");
+    dv.setAttribute("data-phase", img.phase);
+    $("detailName").textContent = img.title;
+    $("detailPhaseTag").textContent = I18N[lang]["p" + img.phase];
+
+    const fullEl = $("fullImg");
+    const wsUrl = pickUrl(img);
+    fullEl.src = fullUrl(wsUrl);
+    fullEl.alt = img.title;
+    // fallback: if full fails, try thumbnail
+    fullEl.onerror = () => {
+      fullEl.onerror = null;
+      fullEl.src = thumbUrl(wsUrl, 1600);
+    };
+
+    // Prev/next within current visible list
+    const visIdx = visibleList.indexOf(img);
+    $("prevBtn").disabled = visIdx <= 0;
+    $("nextBtn").disabled = visIdx === -1 || visIdx >= visibleList.length - 1;
+
+    dv.classList.add("active");
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
+  }
+
+  function hideDetail() {
+    $("detailView").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function navigate(dir) {
+    const cur = AFBEELDINGEN[current];
+    const visIdx = visibleList.indexOf(cur);
+    if (visIdx === -1) return;
+    const next = visIdx + dir;
+    if (next < 0 || next >= visibleList.length) return;
+    showDetail(AFBEELDINGEN.indexOf(visibleList[next]));
+  }
+
+  async function printCurrent() {
+    const img = AFBEELDINGEN[current];
+    const wsUrl = pickUrl(img);
+    // Use a high-res thumbnail URL — Drive's `uc?export=view` returns HTML, not image bytes.
+    // The thumbnail endpoint reliably returns a JPEG/PNG. Request a generous size for print.
+    const candidates = [
+      thumbUrl(wsUrl, 2000),
+      thumbUrl(wsUrl, 1600),
+      thumbUrl(wsUrl, 1000),
+      fullUrl(wsUrl),
+    ];
+
+    // Pre-load the image in the current document (it's already cached from detail view, usually).
+    // Then write a print window that uses the SAME cached src.
+    let workingSrc = null;
+    for (const src of candidates) {
+      try {
+        await new Promise((resolve, reject) => {
+          const probe = new Image();
+          probe.onload = () => { workingSrc = src; resolve(); };
+          probe.onerror = reject;
+          probe.src = src;
+        });
+        break;
+      } catch (_) { /* try next */ }
+    }
+    if (!workingSrc) workingSrc = candidates[0];
+
+    const win = window.open("", "_blank");
+    if (!win) {
+      alert(lang === "nl"
+        ? "Pop-ups zijn geblokkeerd. Sta pop-ups toe om af te drukken."
+        : "Pop-ups are blocked. Allow pop-ups to print.");
+      return;
+    }
+    const safeTitle = img.title.replace(/[<>&"']/g, "");
+    win.document.write(
+      `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${safeTitle}</title>` +
+      `<style>` +
+        `*{margin:0;padding:0;box-sizing:border-box}` +
+        `html,body{width:100%;height:100%;background:#fff}` +
+        `body{display:flex;justify-content:center;align-items:center;padding:24px}` +
+        `img{max-width:100%;max-height:100vh;width:auto;height:auto;object-fit:contain}` +
+        `@media print{` +
+          `@page{margin:8mm;size:auto}` +
+          `body{display:block;padding:0}` +
+          `img{display:block;width:100%;max-width:100%;max-height:none;height:auto;page-break-inside:avoid}` +
+        `}` +
+      `</style></head>` +
+      `<body><img id="p" src="${workingSrc}" alt="${safeTitle}"/>` +
+      `<script>` +
+      `var i=document.getElementById('p');` +
+      `function go(){setTimeout(function(){window.focus();window.print();},300);}` +
+      `if(i.complete&&i.naturalWidth>0)go();else{i.onload=go;i.onerror=function(){document.body.innerHTML='<p style=\\'font-family:sans-serif;padding:40px;text-align:center\\'>Image failed to load. Please try again.</p>';};}` +
+      `<\/script></body></html>`
+    );
+    win.document.close();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  EVENTS
+  // ═══════════════════════════════════════════════════════════════
+  $("searchInput").addEventListener("input", (e) => {
+    searchQuery = e.target.value;
+    render();
+  });
+
+  document.querySelectorAll("#filterChips .chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("#filterChips .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      activePhase = chip.getAttribute("data-phase");
+      render();
+    });
+  });
+
+  document.querySelectorAll(".lang-toggle button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".lang-toggle button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      lang = btn.getAttribute("data-lang");
+      applyI18n();
+      render();
+      if ($("detailView").classList.contains("active")) showDetail(current);
+    });
+  });
+
+  $("backBtn").addEventListener("click", hideDetail);
+  $("prevBtn").addEventListener("click", () => navigate(-1));
+  $("nextBtn").addEventListener("click", () => navigate(1));
+  $("printBtn").addEventListener("click", printCurrent);
+
+  // Keyboard
+  document.addEventListener("keydown", (e) => {
+    if ($("detailView").classList.contains("active")) {
+      if (e.key === "Escape") hideDetail();
+      else if (e.key === "ArrowLeft") navigate(-1);
+      else if (e.key === "ArrowRight") navigate(1);
+    }
+    // Block save shortcuts
+    if ((e.ctrlKey || e.metaKey) && ["s", "u"].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+
+  // Block right-click
+  document.addEventListener("contextmenu", e => {
+    if (e.target.tagName === "IMG") e.preventDefault();
+  });
+
+  // Init
+  applyI18n();
+  render();
+</script>
+</body>
+</html>

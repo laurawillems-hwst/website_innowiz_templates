@@ -232,3 +232,34 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 [data-phase="2"] { --phase-color: var(--innowiz-yellow);  --phase-tint: var(--innowiz-yellow-tint);  --phase-dark: var(--innowiz-yellow-dark);  --phase-on: #111111; }
 [data-phase="3"] { --phase-color: var(--innowiz-blue);    --phase-tint: var(--innowiz-blue-tint);    --phase-dark: var(--innowiz-blue-dark);    --phase-on: #FFFFFF; }
 [data-phase="4"] { --phase-color: var(--innowiz-black);   --phase-tint: var(--innowiz-black-tint);   --phase-dark: #000000;                      --phase-on: #FFFFFF; }
+/* ---------- FOOTER ---------- */
+.site-footer {
+  background: var(--innowiz-black, #111);
+  color: #fff;
+}
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 48px;
+  align-items: baseline;
+}
+.footer-item {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+}
+.footer-item .footer-label {
+  color: rgba(255, 255, 255, 0.55);
+  margin-right: 8px;
+}
+.footer-item a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  transition: border-color var(--dur-fast) var(--ease-standard);
+}
+.footer-item a:hover { border-color: #fff; }
